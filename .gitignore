@@ -1,6 +1,7 @@
 node_modules/
 dist/
 *.glb
+!public/assets/demo-coffee-cup.glb
 *.gltf
 *.blend
 *.c4d

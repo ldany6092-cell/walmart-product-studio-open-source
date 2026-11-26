@@ -1,6 +1,6 @@
-# Product Studio
+# PolyStudio
 
-浏览器端产品模型调色工具，支持部件调色、实色与半透明 PP、视角控制、尺寸标注及透明 PNG 导出。
+浏览器端 3D 产品模型预览、调色与批量出图工具，支持 GLB / GLTF / FBX / STP / STEP、部件分色、潘通/HEX/CMYK/RGB 单模式着色、光面/磨砂 PP、默认朝向调整、尺寸与安全取景框及多视角 PNG / JPG 批量导出。
 
 ## 使用
 
