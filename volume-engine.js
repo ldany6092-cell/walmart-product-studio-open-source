@@ -4,7 +4,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {WebGPUPathTracer,TRANSMISSIVE_BACKGROUND_TRANSPARENT} from 'three-gpu-pathtracer/webgpu';
 
 const abort=()=>Object.assign(new Error('已取消旧画面'),{name:'AbortError'});
-const assetURL=path=>new URL(path,import.meta.url).href;
+const assetURL=path=>new URL(path,document.baseURI).href;
 export class VolumePPStudio {
  constructor(){this.generation=0;this.chain=Promise.resolve();this.cache=new Map();this.active=null}
  cancel(){this.generation++}
