@@ -8,8 +8,8 @@
 
 ## 开源范围
 
-本仓库提供通用应用代码。发布包为空产品库，保留原 HDR 摄影棚光照和背景，体积散射版本采用未降噪输出。GPU 体积散射需要支持 WebGPU 的浏览器。
+本仓库提供通用应用代码。发布包为空产品库，保留原 HDR 摄影棚光照和背景，保留体积散射与第三方降噪组件。GPU 体积散射需要支持 WebGPU 的浏览器。
 
 ## 许可
 
-应用代码采用 MIT 许可。Three.js、three-gpu-pathtracer 和 three-mesh-bvh 遵循各自发行包的许可。用户导入资源的权利由资源持有人管理。
+应用代码采用 MIT 许可。Three.js、three-gpu-pathtracer、three-mesh-bvh 和 oidn-webgpu 遵循各自发行包的许可。用户导入资源的权利由资源持有人管理。

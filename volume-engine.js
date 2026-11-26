@@ -1,7 +1,8 @@
-import {HDRLoader} from 'three/addons/loaders/HDRLoader.js';
 import * as THREE from 'three/webgpu';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-import {WebGPUPathTracer,TRANSMISSIVE_BACKGROUND_TRANSPARENT} from 'three-gpu-pathtracer/webgpu';
+import {HDRLoader} from 'three/addons/loaders/HDRLoader.js';
+import {WebGPUPathTracer,OIDNDenoiser,TRANSMISSIVE_BACKGROUND_TRANSPARENT} from 'three-gpu-pathtracer/webgpu';
+import {initUNetFromURL} from 'oidn-webgpu';
 
 const abort=()=>Object.assign(new Error('已取消旧画面'),{name:'AbortError'});
 const assetURL=path=>new URL(path,document.baseURI).href;
@@ -21,6 +22,7 @@ export class VolumePPStudio {
    env.mapping=THREE.EquirectangularReflectionMapping;env.needsUpdate=true;this.scene.environment=env;this.scene.environmentIntensity=.85;
    for(const [pos,intensity,width]of [[[-3,6,4],6,5],[[4,4,2],3,4],[[1,5,-4],5,4]]){const light=new THREE.RectAreaLight(0xffffff,intensity,width,width);light.position.fromArray(pos);light.lookAt(0,0,0);this.scene.add(light)}
    this.tracer=new WebGPUPathTracer(this.renderer);this.tracer.maxBounces=16;this.tracer.maxSubsurfaceBounces=256;this.tracer.dynamicLowRes=false;this.tracer.renderDelay=0;this.tracer.fadeDuration=0;this.tracer.asyncCompile=true;this.tracer.transmissiveBackground=TRANSMISSIVE_BACKGROUND_TRANSPARENT;this.tracer.frameBudget=500000;
+   this.denoiser=new OIDNDenoiser({initUNetFromURL:(url,backend,opts)=>initUNetFromURL(url,backend,{...opts,denoiseAlpha:true}),auxWeightsUrl:assetURL('./assets/volume-pp/rt_hdr_alb_nrm_small.tza'),maxTileSize:256,dynamicTile:false});this.denoiser.addEventListener('error',event=>{console.error('PP volume denoise',event.error);this.failure=Error('散射降噪没有完成，请重新尝试')});this.tracer.setDenoiser(this.denoiser);
    this.tracer.addEventListener('progress',event=>this.progress?.({stage:event.stage,progress:event.progress,samples:event.samples}));
   })();return this.ready;
  }
