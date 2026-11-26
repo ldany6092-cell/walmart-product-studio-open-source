@@ -1,0 +1,262 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>产品光影实验室 · Product Studio</title><style>
+*{box-sizing:border-box}body{margin:0;background:#eeeee9;color:#303b36;font:14px 'Microsoft YaHei',sans-serif;overflow:hidden}canvas{display:block}header{position:absolute;top:35px;left:42px;z-index:2}.eyebrow{font-size:11px;letter-spacing:3px;color:#7a8580}h1{font:900 clamp(60px,9vw,145px)/1 Arial;margin:14px 0;color:#36463b;letter-spacing:-6px}header p{color:#79847d;font-size:12px;letter-spacing:2px}.brand{position:absolute;right:40px;top:38px;letter-spacing:3px;font-size:11px}.brand b{display:block;font-size:17px;letter-spacing:1px;margin-bottom:7px}.panel{position:absolute;left:42px;top:40%;width:215px;z-index:2}.section{font-size:10px;letter-spacing:2px;color:#829087;margin-bottom:23px}.row{margin:0 0 21px}.row label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:10px}.row output{font:11px monospace;color:#87958b}input[type=range]{width:100%;height:4px;accent-color:#426c56;cursor:pointer}#hue{appearance:none;border-radius:5px;background:linear-gradient(90deg,red,#ff0,#0f0,cyan,blue,#f0f,red)}.color{display:flex;align-items:center;gap:12px;margin-top:25px}.color input{border:0;width:33px;height:33px;background:none;cursor:pointer}.color span{font-size:11px;color:#718277}.products{position:absolute;right:32px;top:20%;bottom:130px;width:150px;overflow:auto;scrollbar-width:thin;z-index:3}.products button{display:block;background:transparent;border:0;border-right:1px solid #ced6cf;color:#7c8c81;text-align:right;width:100%;padding:11px 20px;font:12px Arial;cursor:pointer}.products button.active{border-right:3px solid #416850;color:#2b4937;font-weight:bold;background:linear-gradient(90deg,transparent,#ffffffa0)}footer{position:absolute;bottom:26px;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none;z-index:4}.actions{display:flex;gap:8px;pointer-events:auto;background:#ffffffd9;border:1px solid white;box-shadow:0 8px 35px #30483013;border-radius:60px;padding:8px;backdrop-filter:blur(15px)}button{cursor:pointer}.actions button{border:0;border-radius:28px;padding:13px 21px;background:transparent;color:#516258;font:12px 'Microsoft YaHei'}.actions .primary{background:#385a46;color:white;padding:13px 28px}.actions button.on{background:#e1e9df}.hint{font-size:11px;color:#7b887f;letter-spacing:1px}.status{position:absolute;bottom:34px;left:40px;font:10px monospace;letter-spacing:1px;color:#849187}.count{position:absolute;bottom:34px;right:40px;font:11px monospace;color:#718277}#loading{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);background:#ffffffdd;padding:16px 25px;border-radius:30px;font-size:12px;z-index:5}#flash{position:absolute;inset:0;background:white;opacity:0;pointer-events:none;transition:opacity .25s}#error{position:absolute;top:20px;left:30%;color:#b34e38;background:white;padding:10px;display:none}@media(max-width:800px){header{left:22px;top:22px}h1{font-size:70px}.brand{right:22px;top:22px}.panel{left:22px;width:145px;top:35%}.products{right:12px;width:85px}.actions button{padding:10px 12px}.status{display:none}.count{bottom:110px;right:20px}.hint{font-size:9px}}
+.filters{position:absolute;right:28px;top:14%;z-index:4;display:flex;gap:5px}.filters button,.small{border:1px solid #bfcfc3;background:#ffffffab;color:#365b45;border-radius:18px;padding:8px 10px;font-size:11px}.filters .active{background:#365b45;color:white}.products{width:180px}.product-row{display:flex;align-items:center;gap:4px;padding-left:9px}.product-row input{accent-color:#426c56}.product-row button{flex:1}.palette{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.palette button{width:24px;height:24px;border:2px solid white;border-radius:50%;box-shadow:0 0 0 1px #aaa}.small{display:block;margin-top:9px;cursor:pointer}.panel{top:33%;width:210px}.row{margin-bottom:15px}.section{margin-bottom:12px}.color{margin-top:13px}header p{letter-spacing:1px}#batch:disabled{opacity:.5}h1{font-size:clamp(50px,8vw,120px)}@media(max-height:780px){.panel{top:28%}.row{margin-bottom:10px}.section{display:none}.palette{margin:6px 0}.small{padding:6px}.color{margin-top:8px}} .brand{z-index:3}.panel{top:29%;max-height:66vh;overflow-y:auto;scrollbar-width:thin}.small:disabled{opacity:.5}@media(max-height:780px){.panel{top:27%;max-height:69vh}.small{padding:5px 8px;margin-top:5px}.palette{gap:6px}.palette button{width:21px;height:21px}} </style><style>.panel{overflow-x:hidden;padding-right:8px}.panel input[type=range]{margin:0}</style><style>.panel,.products{scrollbar-width:none}.panel::-webkit-scrollbar,.products::-webkit-scrollbar{display:none}.row.disabled{opacity:.38}.row.disabled input{cursor:not-allowed}.color-actions{display:flex;gap:5px}.color-actions .small{font-size:10px;padding:8px 6px;white-space:nowrap}.upload{position:absolute;right:30px;bottom:65px;z-index:4;width:180px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.upload .small{margin:0}.upload select{max-width:85px;border:1px solid #c3d1c6;border-radius:15px;padding:7px 4px;color:#365b45;background:#ffffffc9;font-size:11px}#uploadStatus{width:100%;font-size:10px;color:#718277}.products{bottom:160px}.panel{padding-right:2px}.small:disabled{cursor:not-allowed}</style><style>.component-editor{margin:0 0 16px}.component-editor label{display:block;font-size:11px;color:#6b7e71;margin-bottom:7px}#partSelect{width:100%;padding:8px 10px;border:1px solid #c3d1c6;background:#ffffffc9;border-radius:12px;color:#365b45;font-size:12px}.component-editor p{font-size:10px;color:#7c8d81;margin:7px 0}.material-balls{display:flex;gap:8px;margin-top:10px}.material-balls button{flex:1;border:1px solid #c3d1c6;border-radius:13px;background:#ffffff80;padding:8px 4px;color:#52715c;font-size:10px;display:flex;align-items:center;justify-content:center;gap:6px}.material-balls button.active{border-color:#426c56;background:#e5eee5}.ball{display:inline-block;width:24px;height:24px;border-radius:50%;box-shadow:inset -3px -4px 7px #365b4530,0 1px 3px #365b4520}.ball.solid{background:radial-gradient(circle at 30% 25%,white,#b9d3bf 65%,#72917c)}.ball.translucent{background:radial-gradient(circle at 30% 25%,#fff9,#bedbc655 65%,#72917c80);border:1px solid #fff}.panel{top:28%;max-height:67vh}</style><style>.value-field{display:inline-flex;align-items:center;gap:2px;color:#718277;font:11px monospace}.value-field input{font:inherit;color:#42624e;text-align:right;width:55px;padding:3px 4px;margin:-4px 0;border:1px solid transparent;border-radius:5px;background:transparent;appearance:textfield;cursor:text}.value-field input:hover:not(:disabled){border-color:#aabdaf;background:#ffffff77}.value-field input:focus{outline:0;border-color:#426c56;background:#fff}.value-field input::-webkit-inner-spin-button,.value-field input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.value-field input:disabled{cursor:not-allowed}.capturing .panel,.capturing .products,.capturing .filters,.capturing .upload{pointer-events:none}</style><style>.quality-label{display:block;margin:12px 0 8px;color:#718277;font-size:10px}#renderQuality{display:block;width:100%;margin-top:6px;padding:8px;border:1px solid #bfcec2;border-radius:10px;color:#365b45;background:#ffffffc9;font-size:11px}</style><style>
+@media(max-width:600px){header{top:max(14px,env(safe-area-inset-top));left:14px}h1{font-size:58px;letter-spacing:-3px;margin:10px 0}header p{font-size:10px;margin:5px 0}.eyebrow{font-size:8px;letter-spacing:1px}.brand{display:none}.panel{top:132px;left:10px;width:128px;max-height:calc(100dvh - 245px);padding-bottom:8px}.panel .section{display:none}.component-editor select{font-size:10px}.component-editor p{font-size:9px}.material-balls{gap:3px}.material-balls button{padding:5px 3px;font-size:9px}.material-balls .ball{width:16px;height:16px}.row{margin-bottom:12px}.row label{font-size:10px}.value-field input{width:40px}.small{font-size:9px;padding:6px}.palette{gap:6px}.palette button{width:20px;height:20px}.filters{top:120px;right:6px;gap:3px}.filters button{font-size:9px;padding:6px}.products{top:159px;right:5px;width:87px;bottom:170px}.product-row{padding-left:0;gap:0}.products button{font-size:10px;padding:10px 7px}.upload{right:7px;bottom:103px;max-width:150px}.upload .small,.upload select{font-size:9px}.upload #uploadStatus{font-size:8px}.count{bottom:87px;right:10px;font-size:8px}.actions{gap:1px;padding:5px}.actions button,.actions .primary{padding:10px 12px;font-size:10px}footer{bottom:max(15px,env(safe-area-inset-bottom));gap:9px}.hint{font-size:8px;max-width:95vw;line-height:1.5;text-align:center}.status{display:none}#loading{max-width:80vw;font-size:11px;white-space:normal}.quality-label{font-size:9px}#renderQuality{font-size:9px;padding:6px}.color-actions{flex-wrap:wrap}}
+</style><style>
+.product-search{position:absolute;right:32px;top:calc(20% - 4px);width:171px;z-index:3}.product-search label{display:block;font-size:10px;color:#78887c;margin:0 0 7px 3px;letter-spacing:1px}.product-search input{box-sizing:border-box;width:100%;height:35px;padding:8px 10px;border:1px solid #b9c7bc;border-radius:11px;background:#ffffffb8;color:#365b45;outline:none;font:11px 'Microsoft YaHei',sans-serif}.product-search input:focus{border-color:#426c56;box-shadow:0 0 0 3px #426c5612}.product-search input::placeholder{color:#87938a}.product-search span{display:block;font-size:9px;color:#78877c;margin:7px 3px}.products{top:calc(20% + 86px)}
+@media(max-width:800px){.product-search{right:12px;width:95px}.product-search input{font-size:9px;padding:6px}.products{top:calc(20% + 86px)}}
+@media(max-width:600px){.product-search{top:159px;right:6px;width:96px}.product-search label{font-size:9px;margin-bottom:5px}.product-search input{height:31px;font-size:9px;padding:5px}.product-search span{font-size:8px;margin:5px 2px}.products{top:239px}}
+</style><style>
+#dimensionOverlay{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+#dimensionOverlay[hidden]{display:none}
+#dimensionOverlay path{fill:none;stroke:#303b36;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;animation:dimension-draw 440ms ease-out both;animation-delay:var(--delay)}
+#dimensionOverlay text{fill:#303b36;stroke:#f3f2ed;stroke-width:5;paint-order:stroke;stroke-linejoin:round;font:600 13px "Microsoft YaHei",sans-serif;animation:dimension-label 240ms ease-out both;animation-delay:calc(var(--delay) + 240ms)}
+@keyframes dimension-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes dimension-label{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){#dimensionOverlay path,#dimensionOverlay text{animation:none}}
+@media(max-width:600px){.actions{flex-wrap:wrap;justify-content:center;max-width:96vw}}
+</style><style>
+.studio-toolbar{position:fixed;inset:0 0 auto;z-index:6;height:54px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 30px;color:#f4f6f3;background:linear-gradient(105deg,#080b0c,#242b2d);border-bottom:1px solid #ffffff14}
+.studio-wordmark{font:600 15px Arial,sans-serif;letter-spacing:4px}
+.studio-tools{display:flex;align-items:stretch;gap:24px;height:100%}
+.studio-tools button{position:relative;border:0;background:none;color:#d4dbd7;padding:0 8px;font:12px 'Microsoft YaHei',sans-serif;white-space:nowrap}
+.studio-tools button:hover,.studio-tools button.on,.studio-tools button:focus-visible{color:white}
+.studio-tools button.on::after{position:absolute;content:'';bottom:0;left:30%;right:30%;height:2px;background:#a4c77e}
+.studio-tools button:disabled{opacity:.45;cursor:not-allowed}
+#materialPanel[hidden]{display:none}
+header{top:72px}.brand{top:75px}
+header h1{font-size:clamp(48px,min(8vw,12vh),120px)}
+@media(max-width:600px){.studio-toolbar{height:48px;padding:0 10px;grid-template-columns:auto 1fr;gap:12px}.studio-wordmark{font-size:11px;letter-spacing:2px}.studio-tools{gap:0;justify-content:center}.studio-tools button{font-size:10px;padding:0 6px}header{top:53px}header h1{font-size:clamp(42px,12vw,58px)}.panel{top:170px;max-height:calc(100dvh - 255px)}}
+</style><style>
+.studio-toolbar{background:linear-gradient(105deg,#101617d6,#283332b8);backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%);box-shadow:0 4px 18px #0b15141c}
+header{top:82px;left:clamp(16px,4vw,64px)}
+header .eyebrow{color:#46604f;font-size:10px;letter-spacing:2.4px}
+header h1{font-size:clamp(30px,4vw,60px);font-weight:650;letter-spacing:1px;margin:7px 0 5px}
+header p{color:#4e5f57;margin:4px 0;font-size:11px}
+#materialPanel{top:82px;left:auto;right:clamp(16px,4vw,64px);bottom:90px;width:244px;max-height:none;padding:16px 15px;border:1px solid #ffffff28;border-radius:12px;background:#18211fea;color:#e7ebe7;box-shadow:0 10px 30px #12201924;backdrop-filter:blur(18px)}
+#materialPanel .section{display:block;color:#b3c2b5;font-size:9px;letter-spacing:2px;margin-bottom:6px}
+.card-heading{margin:0 0 12px;font-size:16px;font-weight:500;letter-spacing:.5px}
+#materialPanel .row label,#materialPanel .value-field,#materialPanel .value-field input,#materialPanel label,#materialPanel .component-editor p,#materialPanel .color span{color:#ced8ce}
+#materialPanel .value-field input:focus,#materialPanel .value-field input:hover:not(:disabled){color:#244336}
+#materialPanel #renderStatus{color:#bac8bc!important}
+#materialPanel #exportStatus a{color:#c1dea7!important}
+#materialPanel .small,#materialPanel #partSelect,#materialPanel #renderQuality,#materialPanel .material-balls button{background:#273430;color:#e0e8df;border-color:#63756a}
+#materialPanel .material-balls button.active{background:#445848;border-color:#a0bc91}
+.catalog-rail{position:absolute;z-index:3;top:220px;bottom:77px;left:clamp(16px,4vw,64px);width:174px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.catalog-rail .filters,.catalog-rail .product-search,.catalog-rail .products,.catalog-rail .upload{position:static;width:100%;max-width:none}
+.catalog-rail .upload{order:4}.catalog-rail .products{flex:1;min-height:0}
+.catalog-rail .product-search label,.catalog-rail .product-search span,.catalog-rail #uploadStatus,.catalog-rail .products button{color:#465b50}
+.catalog-rail .products button{text-align:left;border-right:none;border-left:1px solid #81978966;padding:9px 10px}
+.catalog-rail .products button.active{border-left:3px solid #4e725b;background:#ffffff8c}
+footer{bottom:55px}.actions{padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none}.actions .primary{box-shadow:0 6px 20px #23382e36;padding:13px 27px}
+.studio-meta{position:fixed;inset:auto 0 0;z-index:4;min-height:35px;padding:8px clamp(12px,4vw,64px);display:flex;justify-content:space-between;align-items:center;gap:12px;background:#17201ee8;color:#bcc6bd;font:10px 'Microsoft YaHei',sans-serif;letter-spacing:1px;pointer-events:none}
+.studio-status{color:#d7e0d7}.studio-hint{color:#b5c2b7}
+@media(max-width:700px){
+header{top:60px;left:12px}header h1{font-size:34px}header p{font-size:10px}
+.catalog-rail{top:163px;left:10px;width:108px;bottom:101px;gap:6px}
+.catalog-rail .filters{gap:2px;flex-wrap:wrap}.catalog-rail .filters button{font-size:9px;padding:4px}
+.catalog-rail .upload{gap:3px}
+#materialPanel{top:100px;right:9px;width:142px;bottom:103px;padding:10px 8px}
+.card-heading{font-size:12px}.studio-meta{font-size:8px}.studio-hint{display:none}
+}
+</style><style>
+#materialPanel {
+  display:flex; flex-direction:column; width:320px; bottom:auto; max-height:calc(100dvh - 174px);
+  padding:0; overflow:hidden; background:#ffffffa8; color:#273b32;
+  border:1px solid #ffffffd9; border-radius:16px;
+  backdrop-filter:blur(24px) saturate(115%); -webkit-backdrop-filter:blur(24px) saturate(115%);
+  box-shadow:0 12px 34px #23382e20;
+}
+#materialPanel[hidden]{display:none}
+.material-card-scroll{min-height:0;overflow:auto;padding:18px 18px 12px;scrollbar-width:none}
+.material-card-scroll::-webkit-scrollbar{display:none}
+.material-card-footer{flex:none;padding:12px 16px;border-top:1px solid #ffffffb8;background:#ffffff45}
+#materialPanel .section,#materialPanel .row label,#materialPanel .value-field,#materialPanel .value-field input,
+#materialPanel label,#materialPanel .component-editor p,#materialPanel .color span{color:#40594d}
+#materialPanel #renderStatus{color:#526b5d!important}
+#materialPanel #exportStatus{max-width:none!important;overflow-wrap:anywhere}
+#materialPanel #exportStatus a{color:#2d6649!important}
+#materialPanel .small,#materialPanel #partSelect,#materialPanel #renderQuality,#materialPanel .material-balls button{
+  background:#ffffff9e;color:#345345;border-color:#a6bcae
+}
+#materialPanel .material-balls button.active{background:#e1eee4;border-color:#70917b}
+#materialPanel #batch{
+  width:100%;min-height:46px;margin:0;padding:9px 10px;border:1px solid #365947;border-radius:11px;
+  background:#365947;color:#fff;font-size:13px;font-weight:650;line-height:1.35;
+}
+#materialPanel #batch:hover:not(:disabled){background:#294737}
+#materialPanel #batch:focus-visible{outline:2px solid #47725a;outline-offset:2px}
+@media(max-width:700px){
+  #materialPanel{width:min(205px,48vw);max-height:calc(100dvh - 207px)}
+  .material-card-scroll{padding:11px 10px 8px}.material-card-footer{padding:8px}
+  #materialPanel #batch{font-size:10px;min-height:40px;padding:7px 5px}
+}
+</style><style id="Product Studio-theme">
+:root {
+  --studio-ink:#172b2e;
+  --studio-muted:#475e62;
+  --studio-accent:#006d65;
+  --studio-accent-dark:#00544f;
+  --studio-mint:#91e0cd;
+  --studio-glass:#f5fbfbe0;
+  --studio-border:#9ebcba;
+}
+body{background:#dce5e5;color:var(--studio-ink)}
+.studio-toolbar{
+  background:linear-gradient(105deg,#fbfefed9,#edf8f8b8);color:var(--studio-ink);
+  border-bottom-color:#ffffffd9;box-shadow:0 4px 20px #243d4020;
+  backdrop-filter:blur(24px) saturate(116%);-webkit-backdrop-filter:blur(24px) saturate(116%)
+}
+.studio-wordmark{color:var(--studio-ink)}
+.studio-tools button{color:var(--studio-muted)}
+.studio-tools button.on,.studio-tools button:hover,.studio-tools button:focus-visible{color:var(--studio-accent-dark)}
+.studio-tools button.on::after{background:var(--studio-accent);box-shadow:0 0 8px #006d6540}
+.studio-meta{background:none;color:var(--studio-muted)}
+.studio-status,.studio-hint{color:inherit}
+header h1{color:var(--studio-ink)}
+header p,header .eyebrow{color:var(--studio-muted)}
+#productDimensions{color:var(--studio-ink)!important}
+#materialPanel,.catalog-rail{
+  background:var(--studio-glass);border:1px solid #ffffffc9;
+  border-radius:14px;box-shadow:0 10px 28px #193c3d20;
+  backdrop-filter:blur(20px) saturate(116%);-webkit-backdrop-filter:blur(20px) saturate(116%);
+  color:var(--studio-ink)
+}
+.catalog-rail{box-sizing:border-box;padding:11px}
+.material-card-footer{background:#eff8f7a8;border-top-color:#9ebcba62}
+#materialPanel .section,#materialPanel .row label,#materialPanel .value-field,#materialPanel .value-field input,
+#materialPanel label,#materialPanel .component-editor p,#materialPanel .color span,
+.catalog-rail .product-search label,.catalog-rail .product-search span,.catalog-rail #uploadStatus,
+.catalog-rail .products button{color:var(--studio-muted)}
+#materialPanel #renderStatus{color:var(--studio-muted)!important}
+#materialPanel #exportStatus a{color:var(--studio-accent-dark)!important}
+#materialPanel .small,#materialPanel #partSelect,#materialPanel #renderQuality,#materialPanel .material-balls button,
+.catalog-rail .filters button,.catalog-rail .product-search input,.catalog-rail .upload select,.catalog-rail .upload .small{
+  background:#ffffffbd;border-color:var(--studio-border);color:var(--studio-ink)
+}
+#materialPanel .material-balls button.active,.catalog-rail .filters button.active,.catalog-rail .products button.active{
+  background:#d1ede7;border-color:var(--studio-accent);color:#124e48;font-weight:650
+}
+.catalog-rail .product-search input::placeholder{color:var(--studio-muted)}
+#materialPanel #batch,.actions #shot{
+  background:linear-gradient(120deg,var(--studio-accent),var(--studio-accent-dark));color:#fff;
+  border:1px solid #4f998e;box-shadow:0 5px 16px #00544f30
+}
+#materialPanel #batch:hover:not(:disabled),.actions #shot:hover:not(:disabled){background:#004c46}
+input[type=range],input[type=checkbox]{accent-color:var(--studio-accent)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--studio-accent);outline-offset:2px}
+.studio-tools button:focus-visible{outline-color:var(--studio-accent);outline-offset:-4px}
+#dimensionOverlay path{stroke:var(--studio-ink)}
+#dimensionOverlay text{fill:var(--studio-ink);stroke:#edf8f7}
+@media(max-width:700px){.catalog-rail{padding:6px}}
+</style><style>
+.studio-toolbar{background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.studio-tools button.on::after{box-shadow:none;bottom:7px}
+.catalog-rail{
+  top:76px;bottom:66px;width:208px;padding:0;gap:9px;
+  background:none;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none
+}
+.catalog-rail header{position:static;flex:none;margin:0 0 6px;padding:0 0 12px;border-bottom:1px solid #5b77764d}
+.catalog-rail header .eyebrow{font-size:9px;letter-spacing:2px}
+.catalog-rail header h1{font-size:clamp(27px,3.4vw,46px);line-height:1.04;letter-spacing:-1px;margin:8px 0}
+.catalog-rail header p{font-size:10px;line-height:1.45;margin:3px 0}
+.catalog-rail .product-search label{margin-bottom:4px;font-weight:600}
+.catalog-rail .product-search input{height:32px;border-radius:8px}
+.catalog-rail .product-search span{margin:4px 0 0}
+.catalog-rail .filters{gap:4px}
+.catalog-rail .filters button{padding:5px 9px;border-radius:7px}
+.catalog-rail .products{border-top:1px solid #5b77764d;padding-top:4px}
+.catalog-rail .product-row{padding-left:1px}
+.catalog-rail .products button{border-left:0;border-radius:6px;padding:7px 8px}
+.catalog-rail .products button.active{border-left:2px solid var(--studio-accent);padding-left:6px}
+.catalog-rail .upload{border-top:1px solid #5b77764d;padding-top:8px}
+@media(max-width:700px){
+  .catalog-rail{top:58px;bottom:86px;width:116px;gap:6px}
+  .catalog-rail header{padding-bottom:7px;margin-bottom:2px}
+  .catalog-rail header h1{font-size:25px;letter-spacing:0}
+  .catalog-rail header p,.catalog-rail header .eyebrow{font-size:8px}
+  .catalog-rail .filters button{padding:4px 5px}
+}
+</style><style id="material-glass-refinement">
+#materialPanel{
+  background:rgba(247,253,253,.52);
+  border-color:rgba(255,255,255,.66);
+  backdrop-filter:blur(30px) saturate(120%);
+  -webkit-backdrop-filter:blur(30px) saturate(120%);
+  box-shadow:0 10px 30px #193c3d19,inset 0 1px 0 #ffffff85
+}
+#materialPanel .material-card-footer{background:rgba(243,252,251,.28)}
+</style><style>
+.studio-toolbar{top:14px}
+.studio-wordmark{font-size:19px}
+.studio-tools button{font-size:16px;font-weight:600}
+@media(max-width:600px){
+  .studio-toolbar{top:8px}
+  .studio-wordmark{font-size:13px}
+  .studio-tools button{font-size:12px;padding-inline:5px}
+}
+</style><style>
+.studio-toolbar::after{
+  content:"";position:absolute;bottom:-10px;left:clamp(12px,3vw,54px);right:clamp(12px,3vw,54px);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(34,58,61,.15) 13%,rgba(34,58,61,.15) 87%,transparent);
+  pointer-events:none
+}
+.studio-tools button.is-selected{
+  color:#00544f;
+  background:linear-gradient(135deg,#ffffff77,#d3f3e63d);
+  backdrop-filter:blur(14px) saturate(120%);
+  -webkit-backdrop-filter:blur(14px) saturate(120%);
+  box-shadow:inset 0 0 0 1px #ffffff80;
+  border-radius:8px;
+}
+</style><style id="catalog-dock-layout">
+header{top:145px;left:clamp(16px,4vw,64px)}
+header h1{font-size:clamp(58px,7.3vw,116px);line-height:1.05;font-weight:750;letter-spacing:-.045em;margin:0}
+.catalog-rail{
+  top:auto;bottom:106px;right:auto;width:208px;gap:10px;
+  padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none
+}
+.catalog-tools{display:flex;flex-direction:column;gap:6px}
+.catalog-rail .upload{order:4}
+footer{bottom:55px}
+#materialPanel{top:50%;bottom:auto;transform:translateY(-50%);max-height:min(55dvh,calc(100dvh - 174px))}
+@media(max-width:700px){
+  header{top:96px;left:10px}
+  header h1{font-size:clamp(38px,9vw,60px)}
+  .catalog-rail{bottom:105px;width:116px;gap:7px}
+  #materialPanel{max-height:min(50dvh,calc(100dvh - 200px))}
+}
+</style><style>
+.catalog-picker{position:relative;justify-self:center;min-width:0}
+.catalog-picker summary{
+  list-style:none;cursor:pointer;padding:10px 18px;border:1px solid var(--studio-border);
+  border-radius:9px;background:#ffffffb8;color:var(--studio-ink);font-size:12px;font-weight:600
+}
+.catalog-picker summary::-webkit-details-marker{display:none}
+.catalog-picker summary::after{content:"▾";margin-left:9px;color:var(--studio-accent)}
+.catalog-picker[open] summary::after{content:"▴"}
+.catalog-picker[open] summary{background:#e0f2ee;border-color:var(--studio-accent)}
+.catalog-picker summary:focus-visible{outline:2px solid var(--studio-accent);outline-offset:2px}
+.catalog-popup{
+  position:relative;margin-top:8px;
+  width:min(360px,calc(100vw - 36px));padding:10px;border:1px solid #ffffffd9;border-radius:13px;
+  background:#f5fbfbf2;box-shadow:0 8px 26px #193c3d30;backdrop-filter:blur(18px)
+}
+.catalog-rail .catalog-popup .products{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(82px,1fr));align-items:stretch;
+  max-height:clamp(72px,calc(100dvh - 480px),260px);overflow:auto;border:0;padding:0;
+}
+.catalog-rail .catalog-popup .product-row{min-width:0}
+.catalog-rail .catalog-popup .products button{min-width:0;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:700px){
+  .catalog-picker{grid-column:1/-1;grid-row:2}
+  .catalog-picker summary{padding:6px 14px}
+}
+</style>  <script type="module" crossorigin src="./assets/index-Dqi14MPQ.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/GLTFLoader-oaVpzN0c.js">
+</head><body><nav class="studio-toolbar" aria-label="产品展示工具"><span class="studio-wordmark">Product Studio</span><div class="studio-tools"><button id="toggleColor" aria-controls="materialPanel" aria-expanded="true" class="on">颜色</button><button id="showDimensions" aria-pressed="false" disabled>尺寸</button><button id="rotate">自动旋转</button><button id="reset">重置视角</button></div></nav>
+
+<aside class="panel" id="materialPanel"><div class="material-card-scroll"><div class="section">MATERIAL LAB</div><h2 class="card-heading">质感，由你定义。</h2><div id="materialType" style="margin-bottom:18px;font-size:12px">PP 塑料</div><div class="component-editor"><label for="partSelect">选择调色部件</label><select id="partSelect" aria-label="选择调色部件"></select><div class="material-balls" role="group" aria-label="部件 PP 材质"><button id="material-solid" type="button"><i class="ball solid"></i><span>实色 PP</span></button><button id="material-transparent" type="button"><i class="ball translucent"></i><span>半透明 PP</span></button></div><p>也可直接点击模型选择部件</p></div><div id="sliders"></div><div class="color"><input id="picker" type="color" value="#91c8d8" aria-label="自定义颜色"><span id="hex">#91C8D8</span></div><label class="quality-label" for="renderQuality">渲染效果<select id="renderQuality"><option value="volume">体积散射 · 参考材质</option><option value="fast">快速浏览 · 近似材质</option></select></label><button id="precise" class="small">刷新画面</button><div id="renderStatus" role="status" style="font-size:10px;color:#6e7e74;margin-top:6px">浏览器实时渲染 · 无需外部渲染软件</div><button id="milkPreset" class="small">乳白磨砂 PP 预设</button><div class="palette" id="palette"></div><div class="color-actions"><button id="addColor" class="small">＋ 添加当前颜色</button><button id="deleteColor" class="small">− 删除当前颜色</button></div></div><div class="material-card-footer"><button id="batch" class="small">↓ 下载已选模型定格图 <span id="selectedCount">0</span></button><div id="exportStatus" role="status" style="font-size:10px;margin-top:8px;max-width:210px"></div></div></aside><header><h1 id="name">—</h1></header><aside class="catalog-rail" aria-label="产品目录"><div class="catalog-tools"><div class="product-search"><label for="productSearch">查找产品</label><input id="productSearch" type="search" placeholder="输入产品编号 / 名称" autocomplete="off"><span id="searchResult" role="status" aria-live="polite"></span></div><div class="filters"><button data-filter="all" class="active">全部</button><button data-filter="solid">实色</button><button data-filter="transparent">半透明</button></div></div><details class="catalog-picker"><summary>选择产品</summary><div class="catalog-popup"><nav class="products" aria-label="选择产品" id="products"></nav></div></details><div class="upload"><select id="uploadCategory" aria-label="上传模型材质分类"><option value="solid">实色 PP</option><option value="transparent">半透明 PP</option></select><button id="uploadModel" class="small">＋ 上传模型</button><input id="modelFile" type="file" accept=".glb" hidden><div id="uploadStatus" role="status">支持 GLB · 保存在本机</div></div></aside>
+<footer><div class="actions"><button id="shot" class="primary">◎ &nbsp; 拍照定格</button></div></footer><div class="studio-meta"><span class="studio-status">Product Studio / PRODUCT STUDIO</span><span class="studio-hint">拖动旋转 · 滚轮缩放 · 定格下载透明 PNG</span><span id="count"></span></div><div id="loading">正在准备产品与光照…</div><div id="flash"></div><div id="error"></div>
+<svg id="dimensionOverlay" aria-hidden="true" hidden><g style="--delay:0ms"><path id="dimension-width" pathLength="1"/><text id="dimension-label-width" text-anchor="middle" dominant-baseline="central"/></g><g style="--delay:110ms"><path id="dimension-depth" pathLength="1"/><text id="dimension-label-depth" text-anchor="middle" dominant-baseline="central"/></g><g style="--delay:220ms"><path id="dimension-height" pathLength="1"/><text id="dimension-label-height" text-anchor="middle" dominant-baseline="central"/></g></svg><script>globalThis.PRODUCT_STUDIO_STATIC=true;</script></body></html>
+
