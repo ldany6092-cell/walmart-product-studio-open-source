@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>产品光影实验室 · Product Studio</title><style>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>PolyStudio · 3D 产品预览与批量出图</title><style>
 *{box-sizing:border-box}body{margin:0;background:#eeeee9;color:#303b36;font:14px 'Microsoft YaHei',sans-serif;overflow:hidden}canvas{display:block}header{position:absolute;top:35px;left:42px;z-index:2}.eyebrow{font-size:11px;letter-spacing:3px;color:#7a8580}h1{font:900 clamp(60px,9vw,145px)/1 Arial;margin:14px 0;color:#36463b;letter-spacing:-6px}header p{color:#79847d;font-size:12px;letter-spacing:2px}.brand{position:absolute;right:40px;top:38px;letter-spacing:3px;font-size:11px}.brand b{display:block;font-size:17px;letter-spacing:1px;margin-bottom:7px}.panel{position:absolute;left:42px;top:40%;width:215px;z-index:2}.section{font-size:10px;letter-spacing:2px;color:#829087;margin-bottom:23px}.row{margin:0 0 21px}.row label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:10px}.row output{font:11px monospace;color:#87958b}input[type=range]{width:100%;height:4px;accent-color:#426c56;cursor:pointer}#hue{appearance:none;border-radius:5px;background:linear-gradient(90deg,red,#ff0,#0f0,cyan,blue,#f0f,red)}.color{display:flex;align-items:center;gap:12px;margin-top:25px}.color input{border:0;width:33px;height:33px;background:none;cursor:pointer}.color span{font-size:11px;color:#718277}.products{position:absolute;right:32px;top:20%;bottom:130px;width:150px;overflow:auto;scrollbar-width:thin;z-index:3}.products button{display:block;background:transparent;border:0;border-right:1px solid #ced6cf;color:#7c8c81;text-align:right;width:100%;padding:11px 20px;font:12px Arial;cursor:pointer}.products button.active{border-right:3px solid #416850;color:#2b4937;font-weight:bold;background:linear-gradient(90deg,transparent,#ffffffa0)}footer{position:absolute;bottom:26px;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none;z-index:4}.actions{display:flex;gap:8px;pointer-events:auto;background:#ffffffd9;border:1px solid white;box-shadow:0 8px 35px #30483013;border-radius:60px;padding:8px;backdrop-filter:blur(15px)}button{cursor:pointer}.actions button{border:0;border-radius:28px;padding:13px 21px;background:transparent;color:#516258;font:12px 'Microsoft YaHei'}.actions .primary{background:#385a46;color:white;padding:13px 28px}.actions button.on{background:#e1e9df}.hint{font-size:11px;color:#7b887f;letter-spacing:1px}.status{position:absolute;bottom:34px;left:40px;font:10px monospace;letter-spacing:1px;color:#849187}.count{position:absolute;bottom:34px;right:40px;font:11px monospace;color:#718277}#loading{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);background:#ffffffdd;padding:16px 25px;border-radius:30px;font-size:12px;z-index:5}#flash{position:absolute;inset:0;background:white;opacity:0;pointer-events:none;transition:opacity .25s}#error{position:absolute;top:20px;left:30%;color:#b34e38;background:white;padding:10px;display:none}@media(max-width:800px){header{left:22px;top:22px}h1{font-size:70px}.brand{right:22px;top:22px}.panel{left:22px;width:145px;top:35%}.products{right:12px;width:85px}.actions button{padding:10px 12px}.status{display:none}.count{bottom:110px;right:20px}.hint{font-size:9px}}
 .filters{position:absolute;right:28px;top:14%;z-index:4;display:flex;gap:5px}.filters button,.small{border:1px solid #bfcfc3;background:#ffffffab;color:#365b45;border-radius:18px;padding:8px 10px;font-size:11px}.filters .active{background:#365b45;color:white}.products{width:180px}.product-row{display:flex;align-items:center;gap:4px;padding-left:9px}.product-row input{accent-color:#426c56}.product-row button{flex:1}.palette{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.palette button{width:24px;height:24px;border:2px solid white;border-radius:50%;box-shadow:0 0 0 1px #aaa}.small{display:block;margin-top:9px;cursor:pointer}.panel{top:33%;width:210px}.row{margin-bottom:15px}.section{margin-bottom:12px}.color{margin-top:13px}header p{letter-spacing:1px}#batch:disabled{opacity:.5}h1{font-size:clamp(50px,8vw,120px)}@media(max-height:780px){.panel{top:28%}.row{margin-bottom:10px}.section{display:none}.palette{margin:6px 0}.small{padding:6px}.color{margin-top:8px}} .brand{z-index:3}.panel{top:29%;max-height:66vh;overflow-y:auto;scrollbar-width:thin}.small:disabled{opacity:.5}@media(max-height:780px){.panel{top:27%;max-height:69vh}.small{padding:5px 8px;margin-top:5px}.palette{gap:6px}.palette button{width:21px;height:21px}} </style><style>.panel{overflow-x:hidden;padding-right:8px}.panel input[type=range]{margin:0}</style><style>.panel,.products{scrollbar-width:none}.panel::-webkit-scrollbar,.products::-webkit-scrollbar{display:none}.row.disabled{opacity:.38}.row.disabled input{cursor:not-allowed}.color-actions{display:flex;gap:5px}.color-actions .small{font-size:10px;padding:8px 6px;white-space:nowrap}.upload{position:absolute;right:30px;bottom:65px;z-index:4;width:180px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.upload .small{margin:0}.upload select{max-width:85px;border:1px solid #c3d1c6;border-radius:15px;padding:7px 4px;color:#365b45;background:#ffffffc9;font-size:11px}#uploadStatus{width:100%;font-size:10px;color:#718277}.products{bottom:160px}.panel{padding-right:2px}.small:disabled{cursor:not-allowed}</style><style>.component-editor{margin:0 0 16px}.component-editor label{display:block;font-size:11px;color:#6b7e71;margin-bottom:7px}#partSelect{width:100%;padding:8px 10px;border:1px solid #c3d1c6;background:#ffffffc9;border-radius:12px;color:#365b45;font-size:12px}.component-editor p{font-size:10px;color:#7c8d81;margin:7px 0}.material-balls{display:flex;gap:8px;margin-top:10px}.material-balls button{flex:1;border:1px solid #c3d1c6;border-radius:13px;background:#ffffff80;padding:8px 4px;color:#52715c;font-size:10px;display:flex;align-items:center;justify-content:center;gap:6px}.material-balls button.active{border-color:#426c56;background:#e5eee5}.ball{display:inline-block;width:24px;height:24px;border-radius:50%;box-shadow:inset -3px -4px 7px #365b4530,0 1px 3px #365b4520}.ball.solid{background:radial-gradient(circle at 30% 25%,white,#b9d3bf 65%,#72917c)}.ball.translucent{background:radial-gradient(circle at 30% 25%,#fff9,#bedbc655 65%,#72917c80);border:1px solid #fff}.panel{top:28%;max-height:67vh}</style><style>.value-field{display:inline-flex;align-items:center;gap:2px;color:#718277;font:11px monospace}.value-field input{font:inherit;color:#42624e;text-align:right;width:55px;padding:3px 4px;margin:-4px 0;border:1px solid transparent;border-radius:5px;background:transparent;appearance:textfield;cursor:text}.value-field input:hover:not(:disabled){border-color:#aabdaf;background:#ffffff77}.value-field input:focus{outline:0;border-color:#426c56;background:#fff}.value-field input::-webkit-inner-spin-button,.value-field input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.value-field input:disabled{cursor:not-allowed}.capturing .panel,.capturing .products,.capturing .filters,.capturing .upload{pointer-events:none}</style><style>.quality-label{display:block;margin:12px 0 8px;color:#718277;font-size:10px}#renderQuality{display:block;width:100%;margin-top:6px;padding:8px;border:1px solid #bfcec2;border-radius:10px;color:#365b45;background:#ffffffc9;font-size:11px}</style><style>
 @media(max-width:600px){header{top:max(14px,env(safe-area-inset-top));left:14px}h1{font-size:58px;letter-spacing:-3px;margin:10px 0}header p{font-size:10px;margin:5px 0}.eyebrow{font-size:8px;letter-spacing:1px}.brand{display:none}.panel{top:132px;left:10px;width:128px;max-height:calc(100dvh - 245px);padding-bottom:8px}.panel .section{display:none}.component-editor select{font-size:10px}.component-editor p{font-size:9px}.material-balls{gap:3px}.material-balls button{padding:5px 3px;font-size:9px}.material-balls .ball{width:16px;height:16px}.row{margin-bottom:12px}.row label{font-size:10px}.value-field input{width:40px}.small{font-size:9px;padding:6px}.palette{gap:6px}.palette button{width:20px;height:20px}.filters{top:120px;right:6px;gap:3px}.filters button{font-size:9px;padding:6px}.products{top:159px;right:5px;width:87px;bottom:170px}.product-row{padding-left:0;gap:0}.products button{font-size:10px;padding:10px 7px}.upload{right:7px;bottom:103px;max-width:150px}.upload .small,.upload select{font-size:9px}.upload #uploadStatus{font-size:8px}.count{bottom:87px;right:10px;font-size:8px}.actions{gap:1px;padding:5px}.actions button,.actions .primary{padding:10px 12px;font-size:10px}footer{bottom:max(15px,env(safe-area-inset-bottom));gap:9px}.hint{font-size:8px;max-width:95vw;line-height:1.5;text-align:center}.status{display:none}#loading{max-width:80vw;font-size:11px;white-space:normal}.quality-label{font-size:9px}#renderQuality{font-size:9px;padding:6px}.color-actions{flex-wrap:wrap}}
@@ -252,11 +252,602 @@ footer{bottom:55px}
   .catalog-picker{grid-column:1/-1;grid-row:2}
   .catalog-picker summary{padding:6px 14px}
 }
-</style>  <script type="module" crossorigin src="./assets/index-Dqi14MPQ.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/GLTFLoader-oaVpzN0c.js">
-</head><body><nav class="studio-toolbar" aria-label="产品展示工具"><span class="studio-wordmark">Product Studio</span><div class="studio-tools"><button id="toggleColor" aria-controls="materialPanel" aria-expanded="true" class="on">颜色</button><button id="showDimensions" aria-pressed="false" disabled>尺寸</button><button id="rotate">自动旋转</button><button id="reset">重置视角</button></div></nav>
+</style><style id="export-settings-style">
+.export-settings{margin-top:14px;padding-top:12px;border-top:1px solid #9ebcba62}
+.export-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.export-field{display:flex;flex-direction:column;gap:5px;font-size:10px}
+.export-field select,.export-custom-size input{width:100%;padding:7px 8px;border:1px solid var(--studio-border);border-radius:10px;background:#ffffffbd;color:var(--studio-ink);font-size:11px}
+.export-custom-size{margin-bottom:10px;display:flex;flex-direction:column;gap:5px;font-size:10px}
+.export-custom-size[hidden]{display:none}
+.export-jpg-options.disabled{opacity:.42}
+.export-bg-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;font-size:11px}
+.export-bg-controls{display:flex;align-items:center;gap:6px}
+.export-bg-controls input[type=color]{border:1px solid var(--studio-border);border-radius:6px;width:28px;height:24px;padding:1px;background:#fff;cursor:pointer}
+.export-bg-controls span{font:11px monospace;color:var(--studio-muted)}
+#materialPanel .export-chip{margin:0;padding:4px 8px;border-radius:8px;font-size:10px}
+.export-quality-row{margin-bottom:12px}
+.view-presets-block{margin-top:6px}
+.view-presets-header{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--studio-muted);margin-bottom:6px}
+.view-presets{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.view-preset-item{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:5px 7px;border:1px solid var(--studio-border);border-radius:9px;background:#ffffffbd;font-size:11px;color:var(--studio-ink)}
+.view-preset-item label{display:flex;align-items:center;gap:5px;cursor:pointer;min-width:0;flex:1;margin:0;color:var(--studio-ink)!important;font-size:11px}
+.view-preset-item span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.view-preview-btn{border:1px solid var(--studio-border);border-radius:6px;background:#eff8f7;color:var(--studio-accent-dark);font-size:9px;padding:2px 5px;flex:none}
+.view-preview-btn:hover{background:#d1ede7;border-color:var(--studio-accent)}
+.export-note{margin-top:8px;font-size:10px;line-height:1.45;color:var(--studio-muted)}
+.upload-actions{display:flex;gap:5px;width:100%}
+.upload-actions .small{flex:1;padding:7px 6px;font-size:10px;text-align:center;white-space:nowrap}
+.catalog-rail .upload select{width:100%;max-width:none}
+.product-row button{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.product-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.format-badge{flex:none;font:600 9px/1.2 monospace;padding:2px 4px;border-radius:4px;background:#e4f1ef;color:var(--studio-accent-dark);letter-spacing:.3px}
+@media(max-width:700px){
+  .export-grid,.view-presets{grid-template-columns:1fr}
+}
+</style><style id="studio-shell-refactor">
+.studio-toolbar{
+  top:0;height:58px;padding:0 clamp(14px,3vw,42px);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;
+  background:linear-gradient(105deg,#fbfefee8,#edf8f8d6);
+  border-bottom:1px solid #9ebcba48;
+  backdrop-filter:blur(22px) saturate(118%);-webkit-backdrop-filter:blur(22px) saturate(118%);
+}
+.studio-toolbar::after{display:none}
+.toolbar-left{display:flex;align-items:center;gap:12px;min-width:0}
+.studio-wordmark{font-size:17px;letter-spacing:3px;white-space:nowrap;flex:none}
+.library-indicator{
+  display:inline-flex;align-items:center;gap:6px;max-width:280px;min-width:0;
+  padding:5px 10px;border:1px solid var(--studio-border);border-radius:999px;
+  background:#ffffffc8;color:var(--studio-accent-dark);font-size:11px;font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.library-indicator[hidden]{display:none}
+.library-indicator:hover{background:#e0f2ee;border-color:var(--studio-accent)}
+.studio-tools{display:flex;align-items:center;gap:8px;height:auto}
+.studio-tools button{
+  display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:10px;
+  font-size:13px;font-weight:600;color:var(--studio-muted);transition:background .15s,color .15s;
+}
+.studio-tools button.on{
+  color:var(--studio-accent-dark);background:#d5efe9;box-shadow:inset 0 0 0 1px #006d6535;
+}
+.studio-tools button.on::after{display:none}
+.menu-badge{
+  display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;
+  padding:0 5px;border-radius:999px;background:var(--studio-accent);color:#fff;font:600 10px/1 monospace;
+}
+.menu-badge[hidden]{display:none}
+.toolbar-right{display:flex;justify-content:flex-end;align-items:center;gap:8px}
+.open-file-menu{position:relative}
+.open-file-menu summary{
+  list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:10px;border:1px solid #4f998e;
+  background:linear-gradient(120deg,var(--studio-accent),var(--studio-accent-dark));
+  color:#fff;font-size:12px;font-weight:600;box-shadow:0 4px 12px #00544f28;
+}
+.open-file-menu summary::-webkit-details-marker{display:none}
+.open-file-menu summary::after{content:"▾";font-size:11px;opacity:.9}
+.open-file-menu[open] summary::after{content:"▴"}
+.open-file-popover{
+  position:absolute;left:0;right:auto;top:calc(100% + 8px);z-index:20;width:242px;padding:10px;
+  border:1px solid #ffffffe0;border-radius:13px;background:#f5fbfbf6;
+  box-shadow:0 12px 30px #193c3d2e;backdrop-filter:blur(22px);
+  display:flex;flex-direction:column;gap:8px;
+}
+.open-file-popover .small{
+  margin:0;width:100%;padding:9px 10px;border-radius:9px;text-align:left;font-size:12px;font-weight:600;
+  background:#ffffffd6;border:1px solid var(--studio-border);color:var(--studio-ink);
+}
+.open-file-popover .small:hover{background:#dff2ee;border-color:var(--studio-accent);color:var(--studio-accent-dark)}
+.open-file-category{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--studio-muted);padding-top:4px;border-top:1px solid #9ebcba45}
+.open-file-category select{padding:5px 7px;border:1px solid var(--studio-border);border-radius:8px;background:#fff;color:var(--studio-ink);font-size:11px}
+.open-file-hint{font-size:10px;color:var(--studio-muted);line-height:1.4}
 
-<aside class="panel" id="materialPanel"><div class="material-card-scroll"><div class="section">MATERIAL LAB</div><h2 class="card-heading">质感，由你定义。</h2><div id="materialType" style="margin-bottom:18px;font-size:12px">PP 塑料</div><div class="component-editor"><label for="partSelect">选择调色部件</label><select id="partSelect" aria-label="选择调色部件"></select><div class="material-balls" role="group" aria-label="部件 PP 材质"><button id="material-solid" type="button"><i class="ball solid"></i><span>实色 PP</span></button><button id="material-transparent" type="button"><i class="ball translucent"></i><span>半透明 PP</span></button></div><p>也可直接点击模型选择部件</p></div><div id="sliders"></div><div class="color"><input id="picker" type="color" value="#91c8d8" aria-label="自定义颜色"><span id="hex">#91C8D8</span></div><label class="quality-label" for="renderQuality">渲染效果<select id="renderQuality"><option value="volume">体积散射 · 参考材质</option><option value="fast">快速浏览 · 近似材质</option></select></label><button id="precise" class="small">刷新画面</button><div id="renderStatus" role="status" style="font-size:10px;color:#6e7e74;margin-top:6px">浏览器实时渲染 · 无需外部渲染软件</div><button id="milkPreset" class="small">乳白磨砂 PP 预设</button><div class="palette" id="palette"></div><div class="color-actions"><button id="addColor" class="small">＋ 添加当前颜色</button><button id="deleteColor" class="small">− 删除当前颜色</button></div></div><div class="material-card-footer"><button id="batch" class="small">↓ 下载已选模型定格图 <span id="selectedCount">0</span></button><div id="exportStatus" role="status" style="font-size:10px;margin-top:8px;max-width:210px"></div></div></aside><header><h1 id="name">—</h1></header><aside class="catalog-rail" aria-label="产品目录"><div class="catalog-tools"><div class="product-search"><label for="productSearch">查找产品</label><input id="productSearch" type="search" placeholder="输入产品编号 / 名称" autocomplete="off"><span id="searchResult" role="status" aria-live="polite"></span></div><div class="filters"><button data-filter="all" class="active">全部</button><button data-filter="solid">实色</button><button data-filter="transparent">半透明</button></div></div><details class="catalog-picker"><summary>选择产品</summary><div class="catalog-popup"><nav class="products" aria-label="选择产品" id="products"></nav></div></details><div class="upload"><select id="uploadCategory" aria-label="上传模型材质分类"><option value="solid">实色 PP</option><option value="transparent">半透明 PP</option></select><button id="uploadModel" class="small">＋ 上传模型</button><input id="modelFile" type="file" accept=".glb" hidden><div id="uploadStatus" role="status">支持 GLB · 保存在本机</div></div></aside>
-<footer><div class="actions"><button id="shot" class="primary">◎ &nbsp; 拍照定格</button></div></footer><div class="studio-meta"><span class="studio-status">Product Studio / PRODUCT STUDIO</span><span class="studio-hint">拖动旋转 · 滚轮缩放 · 定格下载透明 PNG</span><span id="count"></span></div><div id="loading">正在准备产品与光照…</div><div id="flash"></div><div id="error"></div>
-<svg id="dimensionOverlay" aria-hidden="true" hidden><g style="--delay:0ms"><path id="dimension-width" pathLength="1"/><text id="dimension-label-width" text-anchor="middle" dominant-baseline="central"/></g><g style="--delay:110ms"><path id="dimension-depth" pathLength="1"/><text id="dimension-label-depth" text-anchor="middle" dominant-baseline="central"/></g><g style="--delay:220ms"><path id="dimension-height" pathLength="1"/><text id="dimension-label-height" text-anchor="middle" dominant-baseline="central"/></g></svg><script>globalThis.PRODUCT_STUDIO_STATIC=true;</script></body></html>
+header{top:74px;left:clamp(16px,3vw,42px);max-width:min(44vw,460px);pointer-events:none}
+header h1{font-size:clamp(26px,3.6vw,48px);line-height:1.1;font-weight:750;letter-spacing:-.02em;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+#catalogRail{
+  position:fixed;top:138px;bottom:52px;left:clamp(16px,3vw,42px);width:244px;z-index:5;
+  padding:12px;display:flex;flex-direction:column;gap:8px;
+  background:rgba(247,253,253,.78);border:1px solid rgba(255,255,255,.8);border-radius:14px;
+  box-shadow:0 10px 28px #193c3d1e;backdrop-filter:blur(24px) saturate(118%);-webkit-backdrop-filter:blur(24px) saturate(118%);
+}
+#catalogRail[hidden]{display:none}
+.catalog-head{display:flex;align-items:center;justify-content:space-between;gap:6px;padding-bottom:6px;border-bottom:1px solid #9ebcba52}
+.catalog-head-title{font-size:12px;font-weight:700;color:var(--studio-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.catalog-close{border:1px solid var(--studio-border);background:#ffffffba;color:var(--studio-muted);border-radius:7px;width:24px;height:24px;line-height:1;font-size:13px;flex:none}
+.catalog-close:hover{background:#e1f1ee;color:var(--studio-ink)}
+#catalogRail #uploadStatus{font-size:10px;line-height:1.4;color:var(--studio-muted)}
+#catalogRail .product-search label{display:none}
+#catalogRail .products{flex:1;min-height:0;overflow:auto;border-top:1px solid #9ebcba45;padding-top:6px;display:flex;flex-direction:column;gap:2px}
+#catalogRail .product-row{padding:0 2px}
+#catalogRail .products button{padding:7px 8px;border-radius:8px;font-size:11px;text-align:left}
+
+#materialPanel{
+  position:fixed;top:74px;right:clamp(16px,3vw,42px);bottom:auto;transform:none;
+  width:324px;max-height:calc(100dvh - 132px);z-index:5;
+}
+.menu-pane[hidden]{display:none}
+.drawer-header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 18px 10px;border-bottom:1px solid #9ebcba48;flex:none}
+.drawer-header-eyebrow{font-size:9px;letter-spacing:2px;color:var(--studio-muted)}
+.drawer-header h2{margin:2px 0 0;font-size:15px;font-weight:700;color:var(--studio-ink)}
+.drawer-close{border:1px solid var(--studio-border);background:#ffffffb8;color:var(--studio-muted);border-radius:8px;width:26px;height:26px;font-size:14px;line-height:1}
+.drawer-close:hover{background:#e0f1ee;color:var(--studio-ink)}
+
+/* Pantone direct color input */
+.pantone-box{margin:0 0 14px;padding:10px;border:1px solid #9ebcba62;border-radius:11px;background:#ffffff8c}
+.pantone-box-head{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px;font-size:11px;font-weight:600;color:var(--studio-ink)}
+.pantone-active-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:2px 6px;border-radius:999px;background:#d6f0ea;color:var(--studio-accent-dark)}
+.pantone-active-tag[hidden]{display:none}
+.pantone-input-row{display:flex;gap:6px}
+.pantone-input-row input{
+  flex:1;min-width:0;padding:7px 9px;border:1px solid var(--studio-border);border-radius:9px;
+  background:#fff;color:var(--studio-ink);font-size:11px;
+}
+#materialPanel .pantone-input-row .small{margin:0;padding:7px 11px;border-radius:9px;font-size:11px;font-weight:600;white-space:nowrap}
+.pantone-suggestions{display:flex;flex-direction:column;gap:4px;margin-top:6px;max-height:152px;overflow:auto}
+.pantone-suggestions[hidden]{display:none}
+.pantone-option{
+  display:flex;align-items:center;gap:8px;width:100%;padding:5px 7px;border:1px solid #9ebcba4a;
+  border-radius:8px;background:#ffffffd6;color:var(--studio-ink);font-size:11px;text-align:left;
+}
+.pantone-option:hover{background:#dff3ef;border-color:var(--studio-accent)}
+.pantone-swatch{width:16px;height:16px;border-radius:50%;border:1px solid #00000024;flex:none}
+.pantone-code{font-weight:600;white-space:nowrap}
+.pantone-name{color:var(--studio-muted);font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.pantone-status{margin-top:6px;font-size:10px;line-height:1.4;color:var(--studio-muted)}
+.pantone-status.is-error{color:#b34e38}
+
+/* Tools & Model Settings cards */
+.tool-quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+#materialPanel .tool-btn{
+  margin:0;padding:9px 10px;border-radius:10px;font-size:12px;font-weight:600;text-align:center;
+}
+#materialPanel .tool-btn.on{background:#d1ede7;border-color:var(--studio-accent);color:var(--studio-accent-dark)}
+.setting-card{padding:11px;border:1px solid #9ebcba62;border-radius:11px;background:#ffffff88;margin-bottom:12px}
+.setting-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-size:12px;font-weight:700;color:var(--studio-ink)}
+.setting-readout{font:600 10px monospace;color:var(--studio-accent-dark);background:#e3f3ef;padding:3px 6px;border-radius:6px}
+.orientation-axis-list{display:flex;flex-direction:column;gap:7px}
+.orientation-axis-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--studio-ink)}
+.orientation-axis-btns{display:flex;gap:5px}
+#materialPanel .orientation-axis-btns .small{margin:0;padding:5px 10px;border-radius:8px;font-size:11px;min-width:54px}
+.orientation-quick-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:9px}
+#materialPanel .orientation-quick-row .small{margin:0;padding:6px 4px;border-radius:8px;font-size:10px;text-align:center}
+.setting-note{margin-top:8px;font-size:10px;line-height:1.45;color:var(--studio-muted)}
+.model-meta-list{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--studio-muted)}
+.model-meta-list strong{color:var(--studio-ink)}
+
+/* Surface finish selector (glossy / fine matte / coarse matte) */
+.finish-selector{margin:0 0 14px;padding:9px 10px;border:1px solid #9ebcba62;border-radius:11px;background:#ffffff8c}
+.finish-header{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:7px;font-size:11px;font-weight:600;color:var(--studio-ink)}
+.finish-hint{font-size:10px;font-weight:500;color:var(--studio-muted)}
+.finish-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+#materialPanel .finish-buttons button{
+  margin:0;padding:7px 4px;border:1px solid var(--studio-border);border-radius:9px;
+  background:#ffffffc8;color:var(--studio-ink);font-size:11px;font-weight:600;text-align:center;
+  transition:background .15s,border-color .15s,color .15s;
+}
+#materialPanel .finish-buttons button:hover{background:#e2f3ef;border-color:var(--studio-accent)}
+#materialPanel .finish-buttons button.active{
+  background:#d1ede7;border-color:var(--studio-accent);color:#124e48;box-shadow:inset 0 0 0 1px #006d6528;
+}
+
+/* Unified single + batch export action bar inside drawer footer */
+.export-action-group{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#materialPanel #shot,#materialPanel #batch{
+  width:100%;min-height:42px;margin:0;padding:8px 8px;border-radius:10px;
+  font-size:12px;font-weight:650;line-height:1.25;text-align:center;
+}
+#materialPanel #shot{
+  background:linear-gradient(120deg,var(--studio-accent),var(--studio-accent-dark));
+  color:#fff;border:1px solid #4f998e;box-shadow:0 4px 14px #00544f2c;
+}
+#materialPanel #shot:hover:not(:disabled){background:#004c46}
+#materialPanel #shot:disabled{opacity:.48;cursor:not-allowed}
+#materialPanel #batch{
+  background:#ffffffd6;color:var(--studio-accent-dark);border:1px solid var(--studio-accent);
+  box-shadow:none;
+}
+#materialPanel #batch:hover:not(:disabled){background:#d9f1ec}
+#materialPanel{max-height:calc(100dvh - 118px)}
+.capturing #materialPanel,.capturing #catalogRail,.capturing .studio-toolbar{pointer-events:none}
+.material-card-footer[hidden]{display:none}
+.view-jump-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+#materialPanel .view-jump-grid .small{margin:0;padding:7px 4px;border-radius:8px;font-size:11px;text-align:center}
+#materialPanel .view-jump-grid .small.active{background:#d1ede7;border-color:var(--studio-accent);color:var(--studio-accent-dark);font-weight:600}
+.view-toggle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.batch-queue-card{margin-top:12px;padding:10px;border:1px solid #9ebcba62;border-radius:11px;background:#ffffff88}
+.batch-queue-head{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px;font-size:11px;font-weight:700;color:var(--studio-ink)}
+.batch-queue-meta{font-size:10px;color:var(--studio-muted);margin-bottom:6px}
+.batch-queue-list{display:flex;flex-direction:column;gap:4px;max-height:130px;overflow:auto}
+.batch-queue-item{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 7px;border:1px solid #9ebcba48;border-radius:8px;background:#ffffffd6;font-size:11px;color:var(--studio-ink)}
+.batch-queue-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+.batch-queue-remove{border:0;background:none;color:var(--studio-muted);font-size:13px;padding:0 4px;line-height:1}
+.batch-queue-remove:hover{color:#b34e38}
+.batch-queue-empty{font-size:10px;color:var(--studio-muted);line-height:1.45}
+#dimensionOverlay rect.dim-pill{fill:rgba(247,253,253,.92);stroke:rgba(0,109,101,.32);stroke-width:1}
+#dimensionOverlay text.dim-text{fill:var(--studio-ink);stroke:none;font:600 12px "Microsoft YaHei",sans-serif;animation:none}
+#dimensionOverlay path.dim-line{fill:none;stroke:var(--studio-ink);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:none;animation:none}
+#dimensionOverlay .safe-frame-rect{fill:none;stroke:rgba(0,109,101,.34);stroke-width:1;stroke-dasharray:6 5}
+#dimensionOverlay .safe-frame-corners{fill:none;stroke:rgba(0,109,101,.78);stroke-width:2;stroke-linecap:round}
+#dimensionOverlay .safe-frame-pill{fill:rgba(245,251,251,.88);stroke:rgba(0,109,101,.28);stroke-width:1}
+#dimensionOverlay .safe-frame-label{fill:var(--studio-accent-dark);stroke:none;font:600 10px "Microsoft YaHei",sans-serif;letter-spacing:.5px;animation:none}
+.lang-toggle{
+  padding:5px 10px;border:1px solid var(--studio-border);border-radius:999px;
+  background:#ffffffc8;color:var(--studio-accent-dark);font:700 11px/1 Arial,sans-serif;
+  letter-spacing:.5px;flex:none;
+}
+.lang-toggle:hover{background:#dff2ee;border-color:var(--studio-accent)}
+.color-input-card{margin:0 0 14px;padding:10px;border:1px solid #9ebcba62;border-radius:11px;background:#ffffff8c}
+.color-card-head{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:8px;font-size:11px;font-weight:600;color:var(--studio-ink)}
+.color-card-head-right{display:flex;align-items:center;gap:6px;min-width:0}
+.color-preview-dot{width:16px;height:16px;border-radius:50%;border:1px solid #00000026;box-shadow:0 1px 3px #0000001a;flex:none}
+.color-mode-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:9px;padding:3px;border-radius:9px;background:#e6f2f0}
+.color-mode-tabs button{
+  border:0;border-radius:7px;padding:5px 2px;background:transparent;
+  color:var(--studio-muted);font-size:11px;font-weight:600;
+}
+.color-mode-tabs button.active{background:#fff;color:var(--studio-accent-dark);box-shadow:0 1px 4px #193c3d1a}
+.color-mode-pane[hidden]{display:none}
+.hex-input-row{display:flex;align-items:center;gap:8px}
+.hex-input-row input[type=color]{border:1px solid var(--studio-border);border-radius:8px;width:36px;height:32px;padding:2px;background:#fff;cursor:pointer;flex:none}
+.hex-input-row input[type=text]{
+  flex:1;min-width:0;padding:7px 9px;border:1px solid var(--studio-border);border-radius:9px;
+  background:#fff;color:var(--studio-ink);font:600 12px monospace;text-transform:uppercase;
+}
+.channel-grid{display:grid;gap:6px}
+.channel-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.channel-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.channel-field{display:flex;flex-direction:column;gap:4px;font-size:10px;color:var(--studio-muted)}
+.channel-field input{
+  width:100%;padding:6px 5px;border:1px solid var(--studio-border);border-radius:8px;
+  background:#fff;color:var(--studio-ink);font:600 11px monospace;text-align:center;
+}
+
+@media(max-width:760px){
+  .studio-toolbar{grid-template-columns:auto 1fr auto;padding:0 10px;height:52px;gap:6px}
+  .studio-wordmark{font-size:13px;letter-spacing:1.5px}
+  .library-indicator{display:none}
+  .studio-tools{gap:2px;justify-content:center}
+  .studio-tools button{padding:6px 7px;font-size:11px}
+  .open-file-menu summary{padding:6px 10px;font-size:11px}
+  header{top:62px;left:10px}
+  header h1{font-size:24px}
+  #catalogRail{top:102px;left:10px;width:min(210px,54vw);bottom:92px}
+  #materialPanel{top:62px;right:10px;width:min(280px,84vw);max-height:calc(100dvh - 150px)}
+}
+</style>  <script type="module" crossorigin src="./assets/index-BsDaGBVA.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/three.module-DUUEA15g.js">
+  <link rel="modulepreload" crossorigin href="./assets/GLTFLoader-B5asVSZN.js">
+</head><body>
+<nav class="studio-toolbar" aria-label="PolyStudio">
+  <div class="toolbar-left">
+    <details class="open-file-menu" id="openFileMenu">
+      <summary data-i18n="openFile">打开文件</summary>
+      <div class="open-file-popover">
+        <button id="uploadModel" type="button" class="small" data-i18n="openModelFiles">＋ 打开模型文件（支持多选）</button>
+        <button id="uploadFolder" type="button" class="small" data-i18n="connectLocalFolder">📁 连接本地文件夹（本地库）</button>
+        <label class="open-file-category" for="uploadCategory">
+          <span data-i18n="defaultImportCategory">默认材质分类</span>
+          <select id="uploadCategory" aria-label="默认材质分类">
+            <option value="solid" data-i18n="solidPP">实色 PP</option>
+            <option value="transparent" data-i18n="translucentPP">半透明 PP</option>
+          </select>
+        </label>
+        <div class="open-file-hint" data-i18n="openFileHint">支持 GLB / GLTF / FBX / STP / STEP · 导库仅列轻索引，点击模型时按需加载</div>
+      </div>
+    </details>
+    <input id="modelFile" type="file" multiple accept=".glb,.gltf,.fbx,.stp,.step" hidden>
+    <input id="modelFolder" type="file" webkitdirectory directory multiple hidden>
+    <button id="libraryIndicator" type="button" class="library-indicator" hidden></button>
+  </div>
+  <div class="studio-tools" role="tablist" aria-label="功能分区">
+    <button id="menuModel" type="button" data-menu="model" role="tab" aria-controls="paneModel" aria-selected="false" data-i18n="menuModel">模型</button>
+    <button id="menuMaterial" type="button" data-menu="material" role="tab" aria-controls="paneMaterial" aria-selected="true" class="on" data-i18n="menuMaterial">材质</button>
+    <button id="menuView" type="button" data-menu="view" role="tab" aria-controls="paneView" aria-selected="false" data-i18n="menuView">视图</button>
+    <button id="menuExport" type="button" data-menu="export" role="tab" aria-controls="paneExport" aria-selected="false"><span data-i18n="menuExport">导出</span> <span id="exportBadge" class="menu-badge" hidden>0</span></button>
+  </div>
+  <div class="toolbar-right">
+    <button id="langToggle" type="button" class="lang-toggle" title="Switch to English" aria-label="Switch language">EN</button>
+    <span class="studio-wordmark">PolyStudio</span>
+  </div>
+</nav>
+
+<header><h1 id="name">—</h1></header>
+
+<aside class="catalog-rail" id="catalogRail" aria-label="本地库目录" hidden>
+  <div class="catalog-head">
+    <span class="catalog-head-title" id="libraryTitle" data-i18n="localLibrary">本地库</span>
+    <button id="closeCatalogRail" type="button" class="catalog-close" data-i18n-title="closeCatalog" aria-label="收起左侧目录" title="收起左侧目录">×</button>
+  </div>
+  <div id="uploadStatus" role="status" data-i18n="lazyIndexHint">仅载入轻索引，点击模型按需加载</div>
+  <div class="catalog-tools">
+    <div class="product-search">
+      <label for="productSearch">查找产品</label>
+      <input id="productSearch" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="搜索名称 / 路径 / 格式" autocomplete="off">
+      <span id="searchResult" role="status" aria-live="polite"></span>
+    </div>
+    <div class="filters">
+      <button data-filter="all" class="active" data-i18n="filterAll">全部</button>
+      <button data-filter="solid" data-i18n="filterSolid">实色</button>
+      <button data-filter="transparent" data-i18n="filterTransparent">半透明</button>
+    </div>
+  </div>
+  <nav class="products" aria-label="选择模型" id="products"></nav>
+</aside>
+
+<aside class="panel" id="materialPanel" aria-label="功能面板">
+  <div class="drawer-header">
+    <div>
+      <div class="drawer-header-eyebrow" id="drawerEyebrow">MATERIAL &amp; COLOR</div>
+      <h2 id="drawerTitle" data-i18n="drawerMaterialTitle">材质与着色</h2>
+    </div>
+    <button id="closeDrawer" type="button" class="drawer-close" data-i18n-title="closeDrawer" aria-label="收起面板" title="收起面板">×</button>
+  </div>
+
+  <div class="material-card-scroll">
+    <!-- 1. 模型分区 -->
+    <section id="paneModel" class="menu-pane" role="tabpanel" aria-labelledby="menuModel" hidden>
+      <div class="setting-card">
+        <div class="setting-card-head">
+          <span data-i18n="defaultOrientation">默认朝向调整</span>
+          <span id="orientationReadout" class="setting-readout">X 0° · Y 0° · Z 0°</span>
+        </div>
+        <div class="orientation-axis-list">
+          <div class="orientation-axis-row">
+            <span data-i18n="axisX">X 轴（前后俯仰）</span>
+            <div class="orientation-axis-btns">
+              <button type="button" class="small" data-rot-axis="x" data-rot-deg="-90">-90°</button>
+              <button type="button" class="small" data-rot-axis="x" data-rot-deg="90">+90°</button>
+            </div>
+          </div>
+          <div class="orientation-axis-row">
+            <span data-i18n="axisY">Y 轴（水平转向）</span>
+            <div class="orientation-axis-btns">
+              <button type="button" class="small" data-rot-axis="y" data-rot-deg="-90">-90°</button>
+              <button type="button" class="small" data-rot-axis="y" data-rot-deg="90">+90°</button>
+            </div>
+          </div>
+          <div class="orientation-axis-row">
+            <span data-i18n="axisZ">Z 轴（左右滚转）</span>
+            <div class="orientation-axis-btns">
+              <button type="button" class="small" data-rot-axis="z" data-rot-deg="-90">-90°</button>
+              <button type="button" class="small" data-rot-axis="z" data-rot-deg="90">+90°</button>
+            </div>
+          </div>
+        </div>
+        <div class="orientation-quick-row">
+          <button type="button" class="small" data-rot-axis="x" data-rot-deg="180" data-i18n="flipVertical">上下翻转</button>
+          <button type="button" class="small" data-rot-axis="y" data-rot-deg="180" data-i18n="flipFrontBack">前后翻转</button>
+          <button type="button" id="resetOrientation" class="small" data-i18n="resetOrientation">重置朝向</button>
+        </div>
+        <div class="setting-note" data-i18n="orientationNote">旋转后自动重算包围盒、贴合地面并更新重置视角与批量导出基准，且自动持久化保存。</div>
+      </div>
+
+      <div class="setting-card">
+        <div class="setting-card-head"><span data-i18n="currentModelInfo">当前模型信息</span></div>
+        <div id="modelMetaInfo" class="model-meta-list" data-i18n="noModelLoaded">未加载模型</div>
+      </div>
+    </section>
+
+    <!-- 2. 材质分区 -->
+    <section id="paneMaterial" class="menu-pane" role="tabpanel" aria-labelledby="menuMaterial">
+      <div id="materialType" style="margin-bottom:12px;font-size:12px">PP 塑料</div>
+      <div class="component-editor">
+        <label for="partSelect" data-i18n="selectPart">选择调色部件</label>
+        <select id="partSelect" aria-label="选择调色部件"></select>
+        <div class="material-balls" role="group" aria-label="部件 PP 材质">
+          <button id="material-solid" type="button"><i class="ball solid"></i><span data-i18n="solidPP">实色 PP</span></button>
+          <button id="material-transparent" type="button"><i class="ball translucent"></i><span data-i18n="translucentPP">半透明 PP</span></button>
+        </div>
+        <p data-i18n="clickPartHint">也可直接点击模型选择部件</p>
+      </div>
+
+      <div class="finish-selector" aria-label="表面质感预设">
+        <div class="finish-header">
+          <span data-i18n="surfaceFinish">表面质感</span>
+          <span id="finishHint" class="finish-hint">细腻微粒 · 柔和漫反射</span>
+        </div>
+        <div class="finish-buttons" role="group" aria-label="表面光面或磨砂质感切换">
+          <button id="finish-glossy" type="button" data-finish="glossy" aria-pressed="false" data-i18n="finishGlossy">亮面</button>
+          <button id="finish-fine_matte" type="button" data-finish="fine_matte" aria-pressed="true" class="active" data-i18n="finishFineMatte">细磨砂</button>
+          <button id="finish-coarse_matte" type="button" data-finish="coarse_matte" aria-pressed="false" data-i18n="finishCoarseMatte">粗磨砂</button>
+        </div>
+      </div>
+
+      <!-- 单模式着色输入：同一时间仅显示一种色彩模式（默认潘通） -->
+      <div class="color-input-card" aria-label="着色输入">
+        <div class="color-card-head">
+          <span data-i18n="colorInputTitle">着色输入</span>
+          <div class="color-card-head-right">
+            <span id="activePantoneTag" class="pantone-active-tag" hidden></span>
+            <i id="colorPreviewSwatch" class="color-preview-dot" style="background:#91c8d8"></i>
+          </div>
+        </div>
+        <div class="color-mode-tabs" id="colorModeTabs" role="tablist" aria-label="色彩模式切换">
+          <button type="button" data-color-mode="pantone" role="tab" aria-selected="true" class="active" data-i18n="modePantone">潘通</button>
+          <button type="button" data-color-mode="hex" role="tab" aria-selected="false" data-i18n="modeHex">HEX</button>
+          <button type="button" data-color-mode="cmyk" role="tab" aria-selected="false" data-i18n="modeCmyk">CMYK</button>
+          <button type="button" data-color-mode="rgb" role="tab" aria-selected="false" data-i18n="modeRgb">RGB</button>
+        </div>
+
+        <div id="colorMode-pantone" class="color-mode-pane" role="tabpanel">
+          <div class="pantone-input-row">
+            <input id="pantoneInput" type="text" data-i18n-placeholder="pantonePlaceholder" placeholder="如 286 C / Cool Gray 5 / 19-4052" autocomplete="off" aria-label="输入潘通色号">
+            <button id="applyPantone" type="button" class="small" data-i18n="applyBtn">应用</button>
+          </div>
+          <div id="pantoneSuggestions" class="pantone-suggestions" hidden></div>
+          <div id="pantoneStatus" class="pantone-status" role="status" data-i18n="pantoneDefaultHint">支持 C 色卡 / 灰阶 / TCX，应用后导出文件名自动带色号</div>
+        </div>
+
+        <div id="colorMode-hex" class="color-mode-pane" role="tabpanel" hidden>
+          <div class="hex-input-row">
+            <input id="picker" type="color" value="#91c8d8" aria-label="选择 HEX 颜色">
+            <input id="hexInput" type="text" value="#91C8D8" maxlength="7" data-i18n-placeholder="hexInputPlaceholder" placeholder="#91C8D8" autocomplete="off" aria-label="输入 HEX 色值">
+          </div>
+          <div id="hexStatus" class="pantone-status" role="status" data-i18n="hexInputHint">输入 6 位十六进制色值或点击左侧色块选色</div>
+        </div>
+
+        <div id="colorMode-cmyk" class="color-mode-pane" role="tabpanel" hidden>
+          <div class="channel-grid cols-4">
+            <label class="channel-field" for="cmyk-c"><span>C (%)</span><input id="cmyk-c" type="number" min="0" max="100" step="1" value="33"></label>
+            <label class="channel-field" for="cmyk-m"><span>M (%)</span><input id="cmyk-m" type="number" min="0" max="100" step="1" value="7"></label>
+            <label class="channel-field" for="cmyk-y"><span>Y (%)</span><input id="cmyk-y" type="number" min="0" max="100" step="1" value="0"></label>
+            <label class="channel-field" for="cmyk-k"><span>K (%)</span><input id="cmyk-k" type="number" min="0" max="100" step="1" value="15"></label>
+          </div>
+          <div class="pantone-status" data-i18n="cmykHint">调整印刷四色百分比（0–100%）实时同步着色</div>
+        </div>
+
+        <div id="colorMode-rgb" class="color-mode-pane" role="tabpanel" hidden>
+          <div class="channel-grid cols-3">
+            <label class="channel-field" for="rgb-r"><span>R (0-255)</span><input id="rgb-r" type="number" min="0" max="255" step="1" value="145"></label>
+            <label class="channel-field" for="rgb-g"><span>G (0-255)</span><input id="rgb-g" type="number" min="0" max="255" step="1" value="200"></label>
+            <label class="channel-field" for="rgb-b"><span>B (0-255)</span><input id="rgb-b" type="number" min="0" max="255" step="1" value="216"></label>
+          </div>
+          <div class="pantone-status" data-i18n="rgbHint">调整红 / 绿 / 蓝通道（0–255）实时同步着色</div>
+        </div>
+      </div>
+
+      <div id="sliders"></div>
+      <button id="milkPreset" type="button" class="small" data-i18n="milkPreset">乳白磨砂 PP 预设</button>
+      <div class="palette" id="palette"></div>
+      <div class="color-actions"><button id="addColor" type="button" class="small" data-i18n="addColor">＋ 添加当前颜色</button><button id="deleteColor" type="button" class="small" data-i18n="deleteColor">− 删除当前颜色</button></div>
+    </section>
+
+    <!-- 3. 视图分区 -->
+    <section id="paneView" class="menu-pane" role="tabpanel" aria-labelledby="menuView" hidden>
+      <div class="setting-card">
+        <div class="setting-card-head"><span data-i18n="cameraControl">视角控制</span></div>
+        <div class="tool-quick-grid" style="margin-bottom:8px">
+          <button id="reset" type="button" class="small tool-btn" data-i18n="resetView">↺ 重置视角</button>
+          <button id="rotate" type="button" class="small tool-btn" data-i18n="autoRotate">⟳ 自动旋转</button>
+        </div>
+        <div class="view-presets-header" style="margin-top:6px"><span data-i18n="quickViewJump">标准视角快捷跳转</span></div>
+        <div id="viewJumpGrid" class="view-jump-grid" role="group" aria-label="视角快捷跳转"></div>
+      </div>
+
+      <div class="setting-card">
+        <div class="setting-card-head">
+          <span data-i18n="dimensionsAndFrame">尺寸与安全取景</span>
+          <span id="dimensionReadout" class="setting-readout" data-i18n="noRealScale">暂无真实比例</span>
+        </div>
+        <div class="view-toggle-grid">
+          <button id="showDimensions" type="button" class="small tool-btn" aria-pressed="false" disabled data-i18n="showDimensions">显示尺寸</button>
+          <button id="toggleSafeFrame" type="button" class="small tool-btn" aria-pressed="false" data-i18n="safeFrame">安全取景框</button>
+        </div>
+        <div class="setting-note" data-i18n="dimensionNote">尺寸线与标签自动避让顶栏及左右面板，同时显示 1:1 导出安全取景范围提示。</div>
+      </div>
+
+      <div class="setting-card">
+        <div class="setting-card-head"><span data-i18n="renderQualityTitle">渲染质量</span></div>
+        <label class="quality-label" for="renderQuality" style="margin-top:0"><span data-i18n="renderEngineLabel">预览与单拍渲染引擎</span><select id="renderQuality"><option value="volume" data-i18n="qualityVolume">体积散射 · 参考材质</option><option value="fast" data-i18n="qualityFast">快速浏览 · 近似材质</option></select></label>
+        <button id="precise" type="button" class="small" data-i18n="refreshView">↻ 刷新画面</button>
+        <div id="renderStatus" role="status" style="font-size:10px;color:#6e7e74;margin-top:6px" data-i18n="renderStatusSolid">实色 PP · 浏览器实时渲染</div>
+      </div>
+    </section>
+
+    <!-- 4. 导出分区 -->
+    <section id="paneExport" class="menu-pane" role="tabpanel" aria-labelledby="menuExport" hidden>
+      <div class="export-settings" style="margin-top:0;padding-top:2px;border-top:0" aria-label="导出参数与批量队列">
+        <div class="export-grid">
+          <label class="export-field" for="exportFormat">
+            <span data-i18n="exportFormat">导出格式</span>
+            <select id="exportFormat">
+              <option value="jpg" data-i18n="formatJpg">JPG（纯色底）</option>
+              <option value="png" data-i18n="formatPng">透明 PNG</option>
+            </select>
+          </label>
+          <label class="export-field" for="exportResolution">
+            <span data-i18n="resolution">分辨率</span>
+            <select id="exportResolution">
+              <option value="1000">1000 × 1000</option>
+              <option value="1024">1024 × 1024</option>
+              <option value="1500">1500 × 1500</option>
+              <option value="2000">2000 × 2000</option>
+              <option value="2048" selected>2048 × 2048</option>
+              <option value="3000">3000 × 3000</option>
+              <option value="custom" data-i18n="resolutionCustom">自定义…</option>
+            </select>
+          </label>
+        </div>
+        <div class="export-custom-size" id="exportCustomSizeRow" hidden>
+          <label for="exportCustomSize" data-i18n="customSizeLabel">自定义边长 (256–4096 px)</label>
+          <input id="exportCustomSize" type="number" min="256" max="4096" step="1" value="2048">
+        </div>
+        <div class="export-jpg-options" id="exportJpgOptions">
+          <div class="export-bg-row">
+            <label for="exportBgColor" data-i18n="jpgBgColor">JPG 底色</label>
+            <div class="export-bg-controls">
+              <input id="exportBgColor" type="color" value="#ffffff" aria-label="JPG 导出底色">
+              <span id="exportBgHex">#FFFFFF</span>
+              <button id="exportBgWhite" type="button" class="small export-chip" data-i18n="pureWhite">纯白</button>
+            </div>
+          </div>
+          <div class="row export-quality-row">
+            <label for="exportQuality">
+              <span data-i18n="jpgQuality">JPG 质量</span>
+              <span class="value-field">
+                <input type="number" id="out-exportQuality" aria-label="JPG 质量精确数值" min="10" max="100" step="1" value="92">
+                <span>%</span>
+              </span>
+            </label>
+            <input type="range" id="exportQuality" min="10" max="100" step="1" value="92">
+          </div>
+        </div>
+        <div class="view-presets-block">
+          <div class="view-presets-header">
+            <span data-i18n="exportViewsTitle">导出视角勾选（支持预览）</span>
+            <span id="viewPresetSummary">4 视角</span>
+          </div>
+          <div class="view-presets" id="viewPresets" role="group" aria-label="批量导出视角预设"></div>
+          <label class="export-note" style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:8px"><input id="batchUseVolume" type="checkbox"><span data-i18n="batchUseVolume">批量导出启用体积散射（可选 · 默认快速 WebGL）</span></label>
+        </div>
+        <div class="batch-queue-card" aria-label="批量导出队列">
+          <div class="batch-queue-head">
+            <span data-i18n="batchQueueTitle">批量队列</span>
+            <button id="clearBatchQueue" type="button" class="small export-chip" hidden data-i18n="clearQueue">清空勾选</button>
+          </div>
+          <div id="batchQueueSummary" class="batch-queue-meta">未勾选模型时可导出当前模型多视角</div>
+          <div id="batchQueue" class="batch-queue-list"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="material-card-footer" id="exportFooter" hidden>
+    <div class="export-action-group" role="group" aria-label="导出操作">
+      <button id="shot" type="button" class="export-btn-primary">◎ 导出当前 JPG</button>
+      <button id="batch" type="button" class="export-btn-secondary">↓ 批量导出 <span id="selectedCount">0</span></button>
+    </div>
+    <div id="exportStatus" role="status" style="font-size:10px;margin-top:7px;max-width:none"></div>
+  </div>
+</aside>
+
+<div class="studio-meta"><span class="studio-status">PolyStudio</span><span class="studio-hint" data-i18n="footerHint">拖动旋转 · 滚轮缩放 · 支持潘通/HEX/CMYK/RGB 与多视角批量导出</span><span id="count"></span></div>
+<div id="loading" data-i18n="preparingScene">正在准备产品与光照…</div><div id="flash"></div><div id="error"></div>
+<svg id="dimensionOverlay" aria-hidden="true" hidden>
+  <g id="safeFrameGroup" hidden>
+    <rect id="safeFrameBox" class="safe-frame-rect" rx="4"/>
+    <path id="safeFrameCorners" class="safe-frame-corners"/>
+    <rect id="safeFrameLabelBg" class="safe-frame-pill" rx="9"/>
+    <text id="safeFrameLabelText" class="safe-frame-label" text-anchor="middle" dominant-baseline="central" data-i18n="safeFrameLabel">1:1 导出安全区</text>
+  </g>
+  <g id="dimensionLinesGroup" hidden>
+    <g id="dim-group-width">
+      <path id="dimension-width" class="dim-line"/>
+      <rect id="dimension-bg-width" class="dim-pill" rx="6"/>
+      <text id="dimension-label-width" class="dim-text" text-anchor="middle" dominant-baseline="central"/>
+    </g>
+    <g id="dim-group-depth">
+      <path id="dimension-depth" class="dim-line"/>
+      <rect id="dimension-bg-depth" class="dim-pill" rx="6"/>
+      <text id="dimension-label-depth" class="dim-text" text-anchor="middle" dominant-baseline="central"/>
+    </g>
+    <g id="dim-group-height">
+      <path id="dimension-height" class="dim-line"/>
+      <rect id="dimension-bg-height" class="dim-pill" rx="6"/>
+      <text id="dimension-label-height" class="dim-text" text-anchor="middle" dominant-baseline="central"/>
+    </g>
+  </g>
+</svg></body></html>
 
