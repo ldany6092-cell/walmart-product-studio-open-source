@@ -1,0 +1,1 @@
+export function matchingProducts(catalog,{query='',filter='all',category}){const tokens=query.normalize('NFKC').trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);return catalog.filter(item=>(filter==='all'||category(item)===filter)&&tokens.every(token=>[item.name,item.description||''].join(' ').normalize('NFKC').toLocaleLowerCase().includes(token)))}
