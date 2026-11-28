@@ -10,6 +10,10 @@
 
 本仓库提供通用应用代码。发布包为空产品库，保留原 HDR 摄影棚光照和背景，保留体积散射与第三方降噪组件。GPU 体积散射需要支持 WebGPU 的浏览器。
 
+## 依赖说明
+
+three-gpu-pathtracer 使用 `vendor/` 内的打包副本（官方 main 分支 commit 20665cf1df，含 Windows 兼容文件名修复）。该修复上游已合并但尚未随 npm 发版，发版后可换回官方包。
+
 ## 许可
 
 应用代码采用 MIT 许可。Three.js、three-gpu-pathtracer、three-mesh-bvh 和 oidn-webgpu 遵循各自发行包的许可。用户导入资源的权利由资源持有人管理。
